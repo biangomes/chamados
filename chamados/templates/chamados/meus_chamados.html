@@ -1,0 +1,73 @@
+{% extends 'chamados/base.html' %}
+{%  load static %}
+{% load md_converter %}
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Meus chamados</title>
+
+    <style>
+
+    </style>
+</head>
+<body>
+    {% block 'conteudo' %}
+        <table class="table table-bordered table table-hover">
+            <thead style="background: #91ca00;">
+                    <th class="text-center">SCCD</th>
+                    <!-- <th scope="col">ID</th> -->
+                    <th scope="col">Título do chamado</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Consultar</th>
+                    <th scope="col">Editar</th>
+                    <!-- <th scope="col"></th> -->
+            </thead>
+
+            <tbody class="text-center">
+                {% for chamado in chamados %}
+                <tr>
+                    <!-- <th scope="row">{{chamado.id}}</th> -->
+                    <th scope="row" id="sccd">{{chamado.sccd}}</th>
+                    <th scope="row" id="titulo">{{chamado.titulo}}</th>
+                    <th scope="row" id="dscricao">{{chamado.descricao|convert_markdown|safe}}</th>
+                    <td title="Visualizar" id="link-consultar"><a href="{{chamado.id}}"> <i class="far fa-eye"></i></a></td>
+                    <td title="Visualizar" id="link-editar"><a href="{% url 'editar_chamado' chamado.id%}"><i class="far fa-eye"></i> </a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+
+
+        <!-- <div class="form h-100">
+            <table class="chamados">
+                <tbody>
+                    <tr>
+                        <th>SCCD</th>
+                        <th>Título do chamado</th>
+                        <th>Descrição</th>
+                        <th>Consultar</th>
+                    </tr>
+
+                    {% for chamado in chamados %}
+                    <td>
+                            <td>{{ chamado.sccd }}</td>
+                            <td>{{ chamado.titulo }}</td>
+                            <td>{{ chamado.descricao|convert_markdown|safe }}</td>
+                            <td><a href="{{ chamado.id }}">Consultar</a></td>
+                            <td><a href="/editar_chamado/{{ chamado.id }}">Editar</a></td>
+                            o link abaixo estava excluindo todos os chamados
+                            <td><a href="{% url 'excluir' chamado.id%}">Excluir</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div> -->
+    {% endblock %}
+</body>
+</html>

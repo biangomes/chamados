@@ -1,0 +1,31 @@
+{% extends 'chamados/base.html' %}
+{% load static %}
+{% load md_converter %}
+
+
+{#Tentativa de usar script para adicionar açao no botao excluir#}
+{#<script>#}
+{#    let botaoExcluir = document.querySelector("botao excluir");#}
+{#    if (botaoExcluir) {#}
+{#        botaoExcluir.addEventListener('click')#}
+{#    }#}
+{#</script>#}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Chamado {{ id }}</title>
+</head>
+<body>
+    {% block 'conteudo' %}
+    <div>
+        <h1> {{ detalhes.sccd }}</h1>
+        <p> {{ detalhes.titulo }}</p>
+        <p> {{ detalhes.descricao|convert_markdown|safe }}</p>
+
+        <a href="{% url 'excluir' detalhes.id%}">Excluir</a>
+    </div>
+    {% endblock %}
+</body>
+</html>

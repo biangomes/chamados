@@ -1,0 +1,76 @@
+{% extends 'chamados/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar chamado</title>
+</head>
+<body>
+
+    {% block 'conteudo' %}
+
+        <div id="formulario">
+            <form action="#" method="POST">
+                {% csrf_token %}
+
+                <!-- inicio de formulario -->
+                {% for chamado in chamado_id %}
+                <div>
+                    <label for="sccd">SCCD</label>
+                    <input type="BigIntegerField" name="sccd" id="sccd" value="{{ chamado.sccd }}">
+
+                    <br>
+
+                    <label for="titulo">Título do item</label>
+                    <textarea rows="6" style="width: 26em" name="titulo" id="titulo">{{ chamado.titulo }}</textarea>
+
+                    <br>
+
+                    <label for="cliente">Cliente</label>
+                    <select name="cliente" id="cliente">
+                        <option value="">{{ chamado.cliente }}</option>
+                        <option value="1">TJSP</option>
+                        <option value="2">TJAC</option>
+                        <option value="3">TJAL</option>
+                        <option value="4">TJCE</option>
+                        <option value="5">TJMS</option>
+                        <option value="6">PGE</option>
+                        <option value="7">MP</option>
+                        <option value="8">DPE</option>
+                    </select>
+
+                    <br>
+
+                    <label for="dtAbertura">Data de abertura</label>
+                    <input type="date" name="dtAbertura" id="dtAbertura" value="{{ chamado.dtAbertura }}">
+
+                    <br>
+
+                    <label for="dtVencimento">Data de vencimento</label>
+                    <input type="date" name="dtVencimento" id="dtVencimento" value="{{ chamado.dtVencimento }}">
+
+                    <br>
+
+                    <label for="severidade">Severidade</label>
+                    <input type="number" name="severidade" id="severidade" min="1" max="5" value="{{ chamado.severidade }}">
+
+                    <br>
+
+                    <div class="campo">
+                        <br>
+                        <label for="descricao">Descrição</label>
+                        <textarea rows="6" style="width: 26em" name="descricao" id="descricao">{{ chamado.descricao }}</textarea>
+                    </div>
+
+                    <button class="botao" type="submit" onsubmit="">Atualizar</button>
+                </div>
+                {% endfor %}
+            </form>
+            <!-- fim de formulario -->
+        </div>
+
+    {% endblock %}
+</body>
+</html>
