@@ -29,7 +29,7 @@ SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', cast=bool)
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['biangomes.pythonanywhere.com']
 
 
 # Application definition
